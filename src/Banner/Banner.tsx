@@ -2,7 +2,7 @@ import React, { useState, FunctionComponent } from 'react';
 import { AppNexusBanner } from 'audienzz-rn-sdk';
 import styles from './styles';
 
-export interface Props {
+interface Props {
   allowVideo?: boolean;
   autoRefreshInterval?: number;
   lazyload?: boolean;
