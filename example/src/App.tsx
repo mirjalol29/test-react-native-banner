@@ -1,6 +1,11 @@
-import * as React from 'react';
+import React from 'react';
+import { SafeAreaView } from 'react-native';
 import Banner from 'react-native-banner';
 
 export default function App() {
-  return <Banner placementId={'14460918'} />;
+  return (
+    <SafeAreaView>
+      <Banner placementId={'14460918'} />
+    </SafeAreaView>
+  );
 }

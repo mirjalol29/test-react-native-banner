@@ -1,38 +1,66 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { AppNexusBanner } from 'audienzz-rn-sdk';
 import styles from './styles';
 
 export interface Props {
+  allowVideo?: boolean;
+  autoRefreshInterval?: number;
+  lazyload?: boolean;
+  onAdLoadFail?: (event: string) => any;
+  onAdLoadSuccess?: () => any;
+  onEventChange?: (event: any) => any;
   placementId: string;
+  reloadOnAppStateChangeIfFailed?: boolean;
+  sizes?: Array<Array<number>>;
 }
 
-const Banner: FC<Props> = ({ placementId }) => {
+const Banner: FunctionComponent<Props> = ({
+  allowVideo,
+  autoRefreshInterval,
+  lazyload,
+  onAdLoadFail,
+  onAdLoadSuccess,
+  onEventChange,
+  placementId,
+  reloadOnAppStateChangeIfFailed,
+  sizes,
+}) => {
   const [loaded, setLoaded] = useState<boolean | undefined>(false);
-
-  const onAdLoadSuccess = () => {
-    setLoaded(true);
-  };
-
-  const onAdLoadFail = () => {
-    setLoaded(false);
-  };
 
   return (
     <AppNexusBanner
-      style={loaded && styles.mainContainer}
-      lazyLoad={true}
-      onAdLoadSuccess={onAdLoadSuccess}
-      onAdLoadFail={onAdLoadFail}
-      reloadOnAppStateChangeIfFailed={true}
+      allowVideo={allowVideo}
+      autoRefreshInterval={autoRefreshInterval}
+      lazyLoad={lazyload}
+      onAdLoadFail={(event: string) => {
+        setLoaded(false);
+        onAdLoadFail && onAdLoadFail(event);
+      }}
+      onAdLoadSuccess={() => {
+        setLoaded(true);
+        onAdLoadSuccess && onAdLoadSuccess();
+      }}
+      onEventChange={(event: any) => {
+        onEventChange && onEventChange(event);
+      }}
       placementId={placementId}
-      sizes={[[300, 250]]}
-      autoRefreshInterval={60}
+      reloadOnAppStateChangeIfFailed={reloadOnAppStateChangeIfFailed}
+      sizes={sizes}
+      style={loaded && styles.mainContainer}
     />
   );
 };
 
 Banner.defaultProps = {
-  placementId: '',
+  allowVideo: false,
+  autoRefreshInterval: 60,
+  lazyload: true,
+  onAdLoadFail: undefined,
+  onAdLoadSuccess: undefined,
+  onEventChange: undefined,
+  placementId: undefined,
+  reloadOnAppStateChangeIfFailed: true,
+  sizes: [[300, 250]],
 };
 
 export default Banner;

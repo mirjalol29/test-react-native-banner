@@ -5,17 +5,19 @@ Gruppo CdT Banner
 ## Installation
 
 ```sh
-npm install react-native-banner
+npm install react-native-banner --save
+npm install audienzz-rn-sdk --save
+npm install react-native-reanimated --save
+
+cd ios && pod install && cd ..
 ```
 
 ## Usage
 
 ```js
-import Banner from "react-native-banner";
+import Banner from 'react-native-banner';
 
-// ...
-
-const result = await Banner.multiply(3, 7);
+<Banner placementId={'YOUR_PLACEMENT_ID'} />
 ```
 
 ## Contributing
