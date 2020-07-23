@@ -49,6 +49,7 @@
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "0.62.13",
+    "audienzz-rn-sdk": "^1.4.0",
     "commitlint": "^8.3.5",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -63,6 +64,7 @@
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
+    "audienzz-rn-sdk": "^1.4.0",
     "react": "*",
     "react-native": "*"
   },
@@ -119,7 +121,10 @@
       ]
     }
   },
-  "eslintIgnore": ["node_modules/", "lib/"],
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
@@ -130,6 +135,13 @@
   "@react-native-community/bob": {
     "source": "src",
     "output": "lib",
-    "targets": ["commonjs", "module", "typescript"]
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
+  },
+  "dependencies": {
+    "audienzz-rn-sdk": "^1.4.0"
   }
 }
