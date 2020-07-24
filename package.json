@@ -1,7 +1,7 @@
 {
   "name": "react-native-banner",
   "version": "1.0.0",
-  "description": "Gruppo CdT Banner",
+  "description": "Gruppo CdT react-native-banner",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -34,13 +34,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://gruppocdt.ch/repo",
+  "repository": "https://bitbucket.org/cdt-team/react-native-banner",
   "author": "Simone Marinelli <simone.marinelli@cdt.ch> (https://gruppocdt.ch)",
   "license": "MIT",
   "bugs": {
-    "url": "https://gruppocdt.ch/repo/issues"
+    "url": "https://bitbucket.org/cdt-team/react-native-banner/issues"
   },
-  "homepage": "https://gruppocdt.ch/repo#readme",
+  "homepage": "https://bitbucket.org/cdt-team/react-native-banner",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",

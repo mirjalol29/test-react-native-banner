@@ -1,6 +1,6 @@
 # react-native-banner
 
-Gruppo CdT Banner
+Gruppo CdT react-native-banner
 
 ## Installation
 

@@ -24,7 +24,7 @@ const Banner: FunctionComponent<Props> = ({
   placementId,
   reloadOnAppStateChangeIfFailed,
   sizes,
-}) => {
+}): JSX.Element => {
   const [loaded, setLoaded] = useState<boolean | undefined>(false);
 
   return (
