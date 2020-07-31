@@ -6,8 +6,17 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: '100%',
   },
-  banner: {
-    paddingVertical: 8,
+  spaceTop: {
+    paddingTop: 8,
+  },
+  spaceRight: {
+    paddingRight: 8,
+  },
+  spaceBottom: {
+    paddingBottom: 8,
+  },
+  spaceLeft: {
+    paddingLeft: 8,
   },
 });
 
