@@ -4,8 +4,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
     overflow: 'hidden',
-    paddingVertical: 8,
     width: '100%',
+  },
+  banner: {
+    paddingVertical: 8,
   },
 });
 

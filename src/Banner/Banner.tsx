@@ -1,4 +1,5 @@
 import React, { useState, FunctionComponent } from 'react';
+import { View } from 'react-native';
 import { AppNexusBanner } from 'audienzz-rn-sdk';
 import styles from './styles';
 
@@ -28,26 +29,28 @@ const Banner: FunctionComponent<Props> = ({
   const [loaded, setLoaded] = useState<boolean | undefined>(false);
 
   return (
-    <AppNexusBanner
-      allowVideo={allowVideo}
-      autoRefreshInterval={autoRefreshInterval}
-      lazyLoad={lazyload}
-      onAdLoadFail={(event: string) => {
-        setLoaded(false);
-        onAdLoadFail && onAdLoadFail(event);
-      }}
-      onAdLoadSuccess={() => {
-        setLoaded(true);
-        onAdLoadSuccess && onAdLoadSuccess();
-      }}
-      onEventChange={(event: any) => {
-        onEventChange && onEventChange(event);
-      }}
-      placementId={placementId}
-      reloadOnAppStateChangeIfFailed={reloadOnAppStateChangeIfFailed}
-      sizes={sizes}
-      style={loaded && styles.mainContainer}
-    />
+    <View style={styles.mainContainer}>
+      <AppNexusBanner
+        allowVideo={allowVideo}
+        autoRefreshInterval={autoRefreshInterval}
+        lazyLoad={lazyload}
+        onAdLoadFail={(event: string) => {
+          setLoaded(false);
+          onAdLoadFail && onAdLoadFail(event);
+        }}
+        onAdLoadSuccess={() => {
+          setLoaded(true);
+          onAdLoadSuccess && onAdLoadSuccess();
+        }}
+        onEventChange={(event: any) => {
+          onEventChange && onEventChange(event);
+        }}
+        placementId={placementId}
+        reloadOnAppStateChangeIfFailed={reloadOnAppStateChangeIfFailed}
+        sizes={sizes}
+        style={loaded && styles.banner}
+      />
+    </View>
   );
 };
 
