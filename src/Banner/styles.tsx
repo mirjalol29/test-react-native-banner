@@ -1,7 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
 
-const styles = StyleSheet.create({
-  mainContainer: {
+interface Styles {
+  container: ViewStyle;
+  spaceTop: ViewStyle;
+  spaceRight: ViewStyle;
+  spaceBottom: ViewStyle;
+  spaceLeft: ViewStyle;
+}
+
+const styles = StyleSheet.create<Styles>({
+  container: {
     alignItems: 'center',
     overflow: 'hidden',
     width: '100%',

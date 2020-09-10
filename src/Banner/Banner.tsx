@@ -1,5 +1,5 @@
-import React, { useState, FunctionComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { FunctionComponent, ReactElement, useState } from 'react';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { AppNexusBanner } from 'audienzz-rn-sdk';
 import styles from './styles';
 
@@ -24,48 +24,36 @@ interface Props {
   };
 }
 
-const Banner: FunctionComponent<Props> = ({
-  allowVideo,
-  autoRefreshInterval,
-  keywords,
-  lazyload,
-  onAdLoadFail,
-  onAdLoadSuccess,
-  onEventChange,
-  placementId,
-  reloadOnAppStateChangeIfFailed,
-  sizes,
-  space,
-}): JSX.Element => {
+const Banner: FunctionComponent<Props> = (props): ReactElement => {
   const [loaded, setLoaded] = useState<boolean | undefined>(false);
-  const bannerStyle = StyleSheet.flatten([
-    space?.top && styles.spaceTop,
-    space?.right && styles.spaceRight,
-    space?.bottom && styles.spaceBottom,
-    space?.left && styles.spaceLeft,
+  const bannerStyle = StyleSheet.flatten<ViewStyle>([
+    props.space?.top && styles.spaceTop,
+    props.space?.right && styles.spaceRight,
+    props.space?.bottom && styles.spaceBottom,
+    props.space?.left && styles.spaceLeft,
   ]);
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.container}>
       <AppNexusBanner
-        allowVideo={allowVideo}
-        autoRefreshInterval={autoRefreshInterval}
-        keywords={keywords}
-        lazyLoad={lazyload}
+        allowVideo={props.allowVideo}
+        autoRefreshInterval={props.autoRefreshInterval}
+        keywords={props.keywords}
+        lazyLoad={props.lazyload}
         onAdLoadFail={(event: string) => {
           setLoaded(false);
-          onAdLoadFail && onAdLoadFail(event);
+          props.onAdLoadFail && props.onAdLoadFail(event);
         }}
         onAdLoadSuccess={() => {
           setLoaded(true);
-          onAdLoadSuccess && onAdLoadSuccess();
+          props.onAdLoadSuccess && props.onAdLoadSuccess();
         }}
         onEventChange={(event: any) => {
-          onEventChange && onEventChange(event);
+          props.onEventChange && props.onEventChange(event);
         }}
-        placementId={String(placementId)}
-        reloadOnAppStateChangeIfFailed={reloadOnAppStateChangeIfFailed}
-        sizes={sizes}
+        placementId={String(props.placementId)}
+        reloadOnAppStateChangeIfFailed={props.reloadOnAppStateChangeIfFailed}
+        sizes={props.sizes}
         style={loaded && bannerStyle}
       />
     </View>
