@@ -5,11 +5,11 @@ Gruppo CdT react-native-banner
 ## Installation
 
 ```sh
-npm install react-native-banner --save
-npm install audienzz-rn-sdk --save
-npm install react-native-reanimated --save
+npm install --save https://bitbucket.org/cdt-team/react-native-banner
+npm install --save audienzz-rn-sdk
+npm install --save react-native-reanimated
 
-cd ios && pod install && cd ..
+npx pod-install
 ```
 
 ## Usage
