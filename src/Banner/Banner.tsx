@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native';
 import { AppNexusBanner } from 'audienzz-rn-sdk';
 import styles from './styles';
 
-interface Props {
+export interface Props {
   allowVideo?: boolean;
   autoRefreshInterval?: number;
   keywords?: {

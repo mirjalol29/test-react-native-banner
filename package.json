@@ -42,13 +42,14 @@
   },
   "homepage": "https://bitbucket.org/cdt-team/react-native-banner",
   "devDependencies": {
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/config-conventional": "^11.0.0",
     "@react-native-community/bob": "^0.16.2",
     "@react-native-community/eslint-config": "^2.0.0",
     "@release-it/conventional-changelog": "^1.1.4",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "0.62.13",
+    "audienzz-rn-sdk": "^1.4.0",
     "commitlint": "^9.1.2",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -63,7 +64,7 @@
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "audienzz-rn-sdk": "^1.4.0",
+    "audienzz-rn-sdk": "*",
     "react": "*",
     "react-native": "*"
   },
@@ -139,8 +140,5 @@
       "module",
       "typescript"
     ]
-  },
-  "dependencies": {
-    "audienzz-rn-sdk": "^1.4.0"
   }
 }
