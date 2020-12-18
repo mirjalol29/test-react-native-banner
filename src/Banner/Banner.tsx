@@ -54,7 +54,7 @@ const Banner: FunctionComponent<Props> = (props): ReactElement => {
         placementId={String(props.placementId)}
         reloadOnAppStateChangeIfFailed={props.reloadOnAppStateChangeIfFailed}
         sizes={props.sizes}
-        style={loaded && bannerStyle}
+        style={loaded ? bannerStyle : styles.hide}
       />
     </View>
   );

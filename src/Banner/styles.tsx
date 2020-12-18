@@ -2,6 +2,7 @@ import { StyleSheet, ViewStyle } from 'react-native';
 
 interface Styles {
   container: ViewStyle;
+  hide: ViewStyle;
   spaceTop: ViewStyle;
   spaceRight: ViewStyle;
   spaceBottom: ViewStyle;
@@ -13,6 +14,9 @@ const styles = StyleSheet.create<Styles>({
     alignItems: 'center',
     overflow: 'hidden',
     width: '100%',
+  },
+  hide: {
+    minHeight: 0,
   },
   spaceTop: {
     paddingTop: 8,
