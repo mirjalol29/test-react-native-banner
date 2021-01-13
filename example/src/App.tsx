@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import Banner from 'react-native-banner';
+import { Banner } from 'react-native-banner';
 
 export default function App() {
   return (

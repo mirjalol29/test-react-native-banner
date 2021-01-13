@@ -15,9 +15,9 @@ npx pod-install
 ## Usage
 
 ```js
-import Banner from 'react-native-banner';
+import { Banner } from 'react-native-banner';
 
-<Banner placementId={'YOUR_PLACEMENT_ID'} />
+<Banner placementId={'YOUR_PLACEMENT_ID'} />;
 ```
 
 ## Contributing
