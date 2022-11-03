@@ -123,6 +123,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				ECB0330E4D2D4BC2FC9E25DD /* [CP] Copy Pods Resources */,
+				F78EA5DEBB72983AB6EE061E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -222,12 +223,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BannerExample/Pods-BannerExample-resources.sh",
+				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ANBrowserViewController.xib",
+				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ANBrowserViewController_SizeClasses.xib",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ANInterstitialAdViewController.xib",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/anjam.js",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ANMRAID.bundle/mraid.js",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ASTMediationManager.js",
-				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/Base.lproj/ANBrowserViewController.xib",
-				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/Base.lproj/ANBrowserViewController_SizeClasses.xib",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/errors.strings",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/images/an_arrow_left.png",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/images/an_arrow_left@2x.png",
@@ -256,15 +257,16 @@
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/sdkjs.js",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/vastVideo.html",
 				"${PODS_ROOT}/AppNexusSDK/sdk/sourcefiles/Resources/ANMRAID.bundle",
+				"${PODS_ROOT}/AppNexusSDK/sdk/AppNexusSDK/SDK-Info.plist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANBrowserViewController.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANBrowserViewController_SizeClasses.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANInterstitialAdViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/anjam.js",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/mraid.js",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ASTMediationManager.js",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANBrowserViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANBrowserViewController_SizeClasses.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/errors.strings",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/an_arrow_left.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/an_arrow_left@2x.png",
@@ -293,10 +295,29 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/sdkjs.js",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/vastVideo.html",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ANMRAID.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SDK-Info.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BannerExample/Pods-BannerExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F78EA5DEBB72983AB6EE061E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BannerExample/Pods-BannerExample-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AppNexusSDK/AppNexusSDK/OMSDK_Appnexus.framework/OMSDK_Appnexus",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Appnexus.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BannerExample/Pods-BannerExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {

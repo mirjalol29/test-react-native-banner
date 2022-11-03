@@ -5,15 +5,7 @@ import { Banner } from 'react-native-banner';
 export default function App() {
   return (
     <SafeAreaView>
-      <Banner
-        placementId={'14460918'}
-        space={{
-          top: true,
-          right: true,
-          bottom: true,
-          left: true,
-        }}
-      />
+      <Banner placementId={'14460918'} sizes={[[300, 250]]} />
     </SafeAreaView>
   );
 }
