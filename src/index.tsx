@@ -52,7 +52,7 @@ const loadAdBanner = (bannerRef: any) => {
   }
 };
 
-export const Banner: React.FC<AppNexusBannerProps> = ({
+export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
   placementId,
   sizes = [[]],
   autoRefreshInterval,
@@ -178,7 +178,7 @@ export const Banner: React.FC<AppNexusBannerProps> = ({
   );
 };
 
-export default Banner;
+export default AppNexusBanner;
 
 const RCTAppNexusBanner = requireNativeComponent<AppNexusBannerProps>(
   'RCTAppNexusBanner'
