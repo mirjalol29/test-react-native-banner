@@ -33,7 +33,7 @@ export type AppNexusBannerProps = {
 };
 
 const removeBanner = (bannerRef: any) => {
-  if (bannerRef.current && Platform.OS === 'ios') {
+  if (bannerRef.current !== null && Platform.OS === 'ios') {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(bannerRef.current),
       UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands.removeBanner,
@@ -42,11 +42,23 @@ const removeBanner = (bannerRef: any) => {
   }
 };
 
-const loadAdBanner = (bannerRef: any) => {
-  if (bannerRef.current) {
+const lazyLoadAdBanner = (bannerRef: any) => {
+  if (bannerRef.current !== null) {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(bannerRef.current),
-      UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands.loadAdBanner,
+      UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands
+        .lazyLoadAdBanner,
+      []
+    );
+  }
+};
+
+const viewLazyAdBanner = (bannerRef: any) => {
+  if (bannerRef.current !== null) {
+    UIManager.dispatchViewManagerCommand(
+      findNodeHandle(bannerRef.current),
+      UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands
+        .viewLazyAdBanner,
       []
     );
   }
@@ -75,7 +87,7 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
    * Initial preload banner
    */
   useEffect(() => {
-    loadAdBanner(bannerRef);
+    lazyLoadAdBanner(bannerRef);
 
     return () => {
       removeBanner(bannerRef);
@@ -111,9 +123,16 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
    * The banner was lazy loaded successfully, we are updating the data
    * @param event
    */
-  const onAdLazyLoadSuccessHandler = useCallback(() => {
-    onAdLazyLoadSuccess && onAdLazyLoadSuccess();
-  }, [onAdLazyLoadSuccess]);
+  const onAdLazyLoadSuccessHandler = useCallback(
+    (event) => {
+      const { width, height } = event.nativeEvent;
+      setBannerStyle({ width, height });
+      viewLazyAdBanner(bannerRef);
+
+      onAdLazyLoadSuccess && onAdLazyLoadSuccess();
+    },
+    [onAdLazyLoadSuccess]
+  );
 
   /**
    * Banner not loaded, hide the block
