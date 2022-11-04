@@ -42,7 +42,7 @@ const removeBanner = (bannerRef: any) => {
   }
 };
 
-const lazyLoadAdBanner = (bannerRef: any) => {
+const loadAdBanner = (bannerRef: any) => {
   if (bannerRef.current !== null) {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(bannerRef.current),
@@ -87,7 +87,7 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
    * Initial preload banner
    */
   useEffect(() => {
-    lazyLoadAdBanner(bannerRef);
+    loadAdBanner(bannerRef);
 
     return () => {
       removeBanner(bannerRef);
