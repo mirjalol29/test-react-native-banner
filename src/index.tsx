@@ -95,17 +95,6 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
   }, []);
 
   /**
-   * Banner appearance handler in the viewport
-   * @param isVisible
-   */
-  const onViewportChangedHandler = useCallback(
-    (isVisible: number | undefined) => {
-      onViewportChangedHandler && onViewportChangedHandler(isVisible);
-    },
-    []
-  );
-
-  /**
    * The banner was loaded successfully, we are updating the data
    * @param event
    */
@@ -124,10 +113,9 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
    * @param event
    */
   const onAdLazyLoadSuccessHandler = useCallback(
-    (event) => {
+    (event: INativeEvent) => {
       const { width, height } = event.nativeEvent;
       setBannerStyle({ width, height });
-      viewLazyAdBanner(bannerRef);
 
       onAdLazyLoadSuccess && onAdLazyLoadSuccess();
     },
@@ -162,6 +150,11 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
    */
   const onAdVisibleChangeHandler = useCallback(
     (event: INativeEvent) => {
+      const { visible } = event.nativeEvent;
+      if (visible !== 0) {
+        viewLazyAdBanner(bannerRef);
+      }
+
       onAdVisibleChange && onAdVisibleChange(event.nativeEvent.visible);
     },
     [onAdVisibleChange]
