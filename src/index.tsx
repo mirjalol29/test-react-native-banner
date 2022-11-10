@@ -106,6 +106,9 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
     (event: INativeEvent) => {
       const { width, height } = event.nativeEvent;
       setBannerStyle({ width, height });
+      if (Platform.OS === 'android') {
+        viewLazyAdBanner(bannerRef);
+      }
 
       onAdLoadSuccess && onAdLoadSuccess(event);
     },
@@ -141,7 +144,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
   const onAdVisibleChangeHandler = useCallback(
     (event: INativeEvent) => {
       const { visible } = event.nativeEvent;
-      if (visible !== 0) {
+      if (Platform.OS === 'ios' && visible !== 0) {
         viewLazyAdBanner(bannerRef);
       }
 
