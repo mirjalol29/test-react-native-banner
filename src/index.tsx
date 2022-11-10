@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useCallback,
+  useState,
+  FunctionComponent,
+} from 'react';
 import {
   findNodeHandle,
   Platform,
@@ -25,8 +31,7 @@ export type AppNexusBannerProps = {
   placementId: string;
   reloadOnAppStateChangeIfFailed?: boolean;
   sizes: number[][];
-  onAdLoadSuccess?: () => void;
-  onAdLazyLoadSuccess?: () => void;
+  onAdLoadSuccess?: (event: INativeEvent) => void;
   onAdLoadFail?: (event: string | undefined) => void;
   onEventChange?: (event: string | undefined) => void;
   onAdVisibleChange?: (event: number | undefined) => void;
@@ -64,20 +69,19 @@ const viewLazyAdBanner = (bannerRef: any) => {
   }
 };
 
-export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
-  placementId,
-  sizes = [[]],
+export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
+  allowVideo,
   autoRefreshInterval,
+  customUserAgent,
   keywords,
+  percentVisibility = 50,
+  placementId,
+  reloadOnAppStateChangeIfFailed,
+  sizes = [[]],
   onAdLoadSuccess,
-  onAdLazyLoadSuccess,
   onAdLoadFail,
   onEventChange,
-  allowVideo,
-  reloadOnAppStateChangeIfFailed,
   onAdVisibleChange,
-  customUserAgent,
-  percentVisibility = 50,
   ...props
 }) => {
   const bannerRef = useRef(null);
@@ -103,23 +107,9 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
       const { width, height } = event.nativeEvent;
       setBannerStyle({ width, height });
 
-      onAdLoadSuccess && onAdLoadSuccess();
+      onAdLoadSuccess && onAdLoadSuccess(event);
     },
     [onAdLoadSuccess]
-  );
-
-  /**
-   * The banner was lazy loaded successfully, we are updating the data
-   * @param event
-   */
-  const onAdLazyLoadSuccessHandler = useCallback(
-    (event: INativeEvent) => {
-      const { width, height } = event.nativeEvent;
-      setBannerStyle({ width, height });
-
-      onAdLazyLoadSuccess && onAdLazyLoadSuccess();
-    },
-    [onAdLazyLoadSuccess]
   );
 
   /**
@@ -179,7 +169,7 @@ export const AppNexusBanner: React.FC<AppNexusBannerProps> = ({
       // @ts-ignore
       onAdLoadSuccess={onAdLoadSuccessHandler}
       // @ts-ignore
-      onAdLazyLoadSuccess={onAdLazyLoadSuccessHandler}
+      onAdLazyLoadSuccess={onAdLoadSuccessHandler}
       // @ts-ignore
       onAdLoadFail={onAdLoadFailHandler}
       // @ts-ignore
