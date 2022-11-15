@@ -12,7 +12,7 @@ import {
   UIManager,
 } from 'react-native';
 
-interface INativeEvent {
+export interface AppNexusBannerEvent {
   nativeEvent: {
     width?: number;
     height?: number;
@@ -31,7 +31,7 @@ export type AppNexusBannerProps = {
   placementId: string;
   reloadOnAppStateChangeIfFailed?: boolean;
   sizes: number[][];
-  onAdLoadSuccess?: (event: INativeEvent) => void;
+  onAdLoadSuccess?: (event: AppNexusBannerEvent) => void;
   onAdLoadFail?: (event: string | undefined) => void;
   onEventChange?: (event: string | undefined) => void;
   onAdVisibleChange?: (event: number | undefined) => void;
@@ -103,7 +103,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
    * @param event
    */
   const onAdLoadSuccessHandler = useCallback(
-    (event: INativeEvent) => {
+    (event: AppNexusBannerEvent) => {
       const { width, height } = event.nativeEvent;
       setBannerStyle({ width, height });
       if (Platform.OS === 'android') {
@@ -120,7 +120,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
    * @param event
    */
   const onAdLoadFailHandler = useCallback(
-    (event: INativeEvent) => {
+    (event: AppNexusBannerEvent) => {
       onAdLoadFail && onAdLoadFail(event.nativeEvent.error);
     },
     [onAdLoadFail]
@@ -131,7 +131,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
    * @param event
    */
   const onEventChangeHandler = useCallback(
-    (event: INativeEvent) => {
+    (event: AppNexusBannerEvent) => {
       onEventChange && onEventChange(event.nativeEvent.eventType);
     },
     [onEventChange]
@@ -142,7 +142,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
    * @param event
    */
   const onAdVisibleChangeHandler = useCallback(
-    (event: INativeEvent) => {
+    (event: AppNexusBannerEvent) => {
       const { visible } = event.nativeEvent;
       if (Platform.OS === 'ios' && visible !== 0) {
         viewLazyAdBanner(bannerRef);
