@@ -51,12 +51,8 @@ const loadAdBanner = (bannerRef: any) => {
   if (bannerRef.current !== null) {
     UIManager.dispatchViewManagerCommand(
       findNodeHandle(bannerRef.current),
-      Platform.select({
-        ios: UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands
-          .loadAdBanner,
-        default: UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands
-          .lazyLoadAdBanner,
-      }),
+      UIManager.getViewManagerConfig('RCTAppNexusBanner').Commands
+        .lazyLoadAdBanner,
       []
     );
   }
@@ -147,6 +143,11 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
    */
   const onAdVisibleChangeHandler = useCallback(
     (event: INativeEvent) => {
+      const { visible } = event.nativeEvent;
+      if (Platform.OS === 'ios' && visible !== 0) {
+        viewLazyAdBanner(bannerRef);
+      }
+
       onAdVisibleChange && onAdVisibleChange(event.nativeEvent.visible);
     },
     [onAdVisibleChange]
