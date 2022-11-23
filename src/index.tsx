@@ -85,7 +85,8 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
   ...props
 }) => {
   const bannerRef = useRef(null);
-  const [bannerStyle, setBannerStyle] = useState({});
+  const [bannerSize, setBannerSize] = useState({});
+  const [open, setOpen] = useState(false);
 
   /**
    * Initial preload banner
@@ -105,14 +106,15 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
   const onAdLoadSuccessHandler = useCallback(
     (event: AppNexusBannerEvent) => {
       const { width, height } = event.nativeEvent;
-      setBannerStyle({ width, height });
-      if (Platform.OS === 'android') {
+      setBannerSize({ width, height });
+      if (Platform.OS === 'android' && !open) {
         viewLazyAdBanner(bannerRef);
+        setOpen(true);
       }
 
       onAdLoadSuccess && onAdLoadSuccess(event);
     },
-    [onAdLoadSuccess]
+    [onAdLoadSuccess, open]
   );
 
   /**
@@ -144,13 +146,14 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
   const onAdVisibleChangeHandler = useCallback(
     (event: AppNexusBannerEvent) => {
       const { visible } = event.nativeEvent;
-      if (Platform.OS === 'ios' && visible !== 0) {
+      if (Platform.OS === 'ios' && visible !== 0 && !open) {
         viewLazyAdBanner(bannerRef);
+        setOpen(true);
       }
 
-      onAdVisibleChange && onAdVisibleChange(event.nativeEvent.visible);
+      onAdVisibleChange && onAdVisibleChange(visible);
     },
-    [onAdVisibleChange]
+    [onAdVisibleChange, open]
   );
 
   /**
@@ -168,7 +171,7 @@ export const AppNexusBanner: FunctionComponent<AppNexusBannerProps> = ({
       placementId={placementId}
       reloadOnAppStateChangeIfFailed={reloadOnAppStateChangeIfFailed}
       sizes={sizes}
-      style={bannerStyle}
+      style={bannerSize}
       // @ts-ignore
       onAdLoadSuccess={onAdLoadSuccessHandler}
       // @ts-ignore
